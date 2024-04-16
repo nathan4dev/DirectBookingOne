@@ -13,7 +13,12 @@ namespace DirectBookingOne.Api
             builder.Services.Configure<ProductsDataBaseSettings>(
                 builder.Configuration.GetSection("ProductStoreDatabase"));
 
+            builder.Services.Configure<AvailabilityDataBaseSettings>(
+                 builder.Configuration.GetSection("AvailabilityStoreDatabase"));
+
+
             builder.Services.AddSingleton<ProductService>();
+            builder.Services.AddTransient<AvailabilityService>(); // Register AvailabilityService
 
             builder.Services.AddControllers();
 
@@ -33,7 +38,6 @@ namespace DirectBookingOne.Api
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
-
 
             app.MapControllers();
 
